@@ -21,12 +21,11 @@ class Merchant < ApplicationRecord
   end
 
   def five_most_popular_items
-    # self.joins(items: [{ invoice_items: :invoices}, :transactions])
-    items.joins(invoice_items: { invoice: :transactions})
+    items.joins(invoice_items: { invoice: :transactions })
         .where('transactions.result =?', 0)
-        .select("merchant_id, invoice_items.item_id, items.name, sum(invoice_items.unit_price) AS total_item_sales")
-        .group("merchant_id, invoice_items.item_id, items.name")
-        .order("merchant_id, total_item_sales DESC")
+        .select("items.*, invoice_items.item_id, sum(invoice_items.unit_price) AS total_item_sales")
+        .group("invoice_items.item_id, items.id")
+        .order("total_item_sales DESC")
         .limit(5)
   end
 end
