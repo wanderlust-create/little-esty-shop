@@ -135,36 +135,36 @@ RSpec.describe 'Merchants Index' do
     it "will list a Merchant's top 5 items with the name and renevue generated" do
       visit "/merchants/#{@merchant2.id}/items"
       expect(page).to have_content('Top Items')
-
+save_and_open_page
       within("#top_items-0") do
         expect(page).to have_content(@item4.name)
-        expect(page).to have_link("/merchants/#{@merchant2.id}/items/#{@item4.id}")
-        expect(page).to have_content(@item4.total_revenue)
+        expect(page).to have_link(@item4.name)
+        expect(page).to have_content(@item4.display_price)
       end
 
       within("#top_items-1") do
         expect(page).to have_content(@item3.name)
-        expect(page).to have_link("/merchants/#{@merchant2.id}/items/#{@item3.id}")
-        expect(page).to have_content(@item3.total_revenue)
+        expect(page).to have_link(@item3.name)
+        expect(page).to have_content(@item3.display_price)
       end
 
       within("#top_items-2") do
         expect(page).to have_content(@item7.name)
-        expect(page).to have_link("/merchants/#{@merchant2.id}/items/#{@item7.id}")
-        expect(page).to have_content(@item7.total_revenue)
+        expect(page).to have_link(@item7.name)
+        expect(page).to have_content(@item7.display_price)
       end
 
-      within("#top_item-3") do
+      within("#top_items-2") do
         expect(page).to have_content(@item1.name)
-        expect(page).to have_link("/merchants/#{@merchant2.id}/items/#{@item1.id}")
-        expect(page).to have_content(@item1.total_revenue)
+        expect(page).to have_link(@item1.name)
+        expect(page).to have_content(@item1.display_price)
       end
 
       within("#top_items-4") do
         expect(page).to have_content(@item2.name)
-        expect(page).to have_link("/merchants/#{@merchant2.id}/items/#{@item2.id}")
-        expect(page).to have_content(@item2.total_revenue)
-      end 
+        expect(page).to have_link(@item2.name)
+        expect(page).to have_content(@item2.display_price)
+      end
     end
   end
 end

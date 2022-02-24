@@ -28,4 +28,9 @@ class Merchant < ApplicationRecord
         .order("total_item_sales DESC")
         .limit(5)
   end
+
+  def display_price
+    (total_item_sales / 100).to_s
+  end
+
 end
