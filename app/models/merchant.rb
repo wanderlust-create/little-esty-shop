@@ -22,15 +22,28 @@ class Merchant < ApplicationRecord
 
   def five_most_popular_items
     items.joins(invoice_items: { invoice: :transactions })
-        .where('transactions.result =?', 0)
-        .select("items.*, invoice_items.item_id, sum(invoice_items.unit_price) AS total_item_sales")
-        .group("invoice_items.item_id, items.id")
-        .order("total_item_sales DESC")
-        .limit(5)
+    .where('transactions.result =?', 0)
+    .select("items.*, invoice_items.item_id, sum(invoice_items.unit_price) AS total_item_sales")
+    .group("invoice_items.item_id, items.id")
+    .order("total_item_sales DESC")
+    .limit(5)
   end
 
   def display_price
     (total_item_sales / 100).to_s
   end
+
+  def day_with_most_sells
+    # InvoiceItem.select(:invoice_items.created_at, :invoice_items.item_id)
+    # .where("item_id =?", "#{item.id}")
+    self.invoice_items.group(:created_at).count
+  end
+  #
+  # def day_with_most_sells
+  #     self.joins(:invoice_items)
+  #     .select("invoice_items.*, invoice_items.created_at")
+  #     .where("invoice_items.item_id =?", "#{item.id}")
+  #     .group("invoice_items.created_at").count
+  # end
 
 end

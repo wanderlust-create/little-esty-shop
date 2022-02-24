@@ -135,35 +135,40 @@ RSpec.describe 'Merchants Index' do
     it "will list a Merchant's top 5 items with the name and renevue generated" do
       visit "/merchants/#{@merchant2.id}/items"
       expect(page).to have_content('Top Items')
-save_and_open_page
+
       within("#top_items-0") do
         expect(page).to have_content(@item4.name)
         expect(page).to have_link(@item4.name)
         expect(page).to have_content(@item4.display_price)
+        expect(page).to have_content("Top selling date for #{@item4.name} was #{@item4.day_with_most_sells}")
       end
 
       within("#top_items-1") do
         expect(page).to have_content(@item3.name)
         expect(page).to have_link(@item3.name)
         expect(page).to have_content(@item3.display_price)
+        expect(page).to have_content("Top selling date for #{@item3.name} was #{@item3.day_with_most_sells}")
       end
 
       within("#top_items-2") do
         expect(page).to have_content(@item7.name)
         expect(page).to have_link(@item7.name)
         expect(page).to have_content(@item7.display_price)
+        expect(page).to have_content("Top selling date for #{@item7.name} was #{@item7.day_with_most_sells}")
       end
 
       within("#top_items-2") do
         expect(page).to have_content(@item1.name)
         expect(page).to have_link(@item1.name)
         expect(page).to have_content(@item1.display_price)
+        expect(page).to have_content("Top selling date for #{@item1.name} was #{@item1.day_with_most_sells}")
       end
 
       within("#top_items-4") do
         expect(page).to have_content(@item2.name)
         expect(page).to have_link(@item2.name)
         expect(page).to have_content(@item2.display_price)
+        expect(page).to have_content("Top selling date for #{@item2.name} was #{@item2.day_with_most_sells}")
       end
     end
   end
