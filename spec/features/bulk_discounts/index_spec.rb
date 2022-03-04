@@ -13,9 +13,9 @@ RSpec.describe 'Bulk discounts index page' do
   # And each bulk discount listed includes a link to its show page
   before :each do
     @merchant = Merchant.create!(name: "Ana Maria")
-    @discount_1 = BulkDiscount.create!(percentage_discount: 0.5, quantity_threshold: 5, merchant_id: @merchant.id)
-    @discount_2 = BulkDiscount.create!(percentage_discount: 0.10, quantity_threshold: 10, merchant_id: @merchant.id)
-    @discount_3 = BulkDiscount.create!(percentage_discount: 0.20, quantity_threshold: 20, merchant_id: @merchant.id)
+    @discount_1 = BulkDiscount.create!(percentage_discount: 0.5, quantity_threshold: 15, merchant_id: @merchant.id)
+    @discount_2 = BulkDiscount.create!(percentage_discount: 0.10, quantity_threshold: 30, merchant_id: @merchant.id)
+    @discount_3 = BulkDiscount.create!(percentage_discount: 0.20, quantity_threshold: 40, merchant_id: @merchant.id)
   end
 
   it "when visiting the merchant bulk discounts index" do
