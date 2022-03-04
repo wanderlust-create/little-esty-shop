@@ -1,0 +1,7 @@
+<% @merchant.bulk_discounts.each_with_index do |percentage_discount, index| %>
+<div id='bulk_discount-<%= index %>'>
+
+<%= percentage_discount.percentage_discount %>
+<%= percentage_discount.quantity_threshold %>
+
+<% end %>
