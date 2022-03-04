@@ -20,3 +20,4 @@
     <p>Invoice ID: <%= link_to "#{invoice_item.invoice_id}", merchant_invoices_path(@merchant.id) %></p>
   </div>
 <% end %>
+<%= link_to 'Discounts', merchant_bulk_discounts_path(@merchant), class: 'link_1', style: 'pull-right' %>
