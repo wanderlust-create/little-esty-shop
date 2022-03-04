@@ -119,25 +119,3 @@ RSpec.describe 'The Merchant Dashboard' do
       expect(page).to have_content(@katz.top_five_customers.last.transaction_count)
     end
 end
-#     Merchant Bulk Discounts Index
-#
-# As a merchant
-# When I visit my merchant dashboard
-# Then I see a link to view all my discounts
-# When I click this link
-# Then I am taken to my bulk discounts index page
-# Where I see all of my bulk discounts including their
-# percentage discount and quantity thresholds
-# And each bulk discount listed includes a link to its show page
-
-it "display a link to view all my discounts" do
-    visit merchant_dashboard_index_path
-    expect(page).to have_link('Discounts')
-    click_on('Discounts')
-    # expect(current_path).to eq("/merchants/#{@katz.id}/bulk_discounts")
-    expect(current_path).to eq("/merchants/#{@katz.id}/bulk_discounts")
-
-
-
-  end
-end
