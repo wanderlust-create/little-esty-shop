@@ -21,6 +21,7 @@ RSpec.describe 'Bulk discounts index page' do
   it "when visiting the merchant bulk discounts index" do
       visit merchant_dashboard_index_path(@merchant)
       expect(page).to have_link("##{@merchant.name}'s bulk discounts")
+      save_and_open_page
       click_on("##{@merchant.name}'s bulk discounts")
       # expect(current_path).to eq("/merchants/#{@katz.id}/bulk_discounts")
 
