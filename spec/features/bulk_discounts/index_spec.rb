@@ -21,34 +21,32 @@ RSpec.describe 'Bulk discounts index page' do
   it "when visiting the merchant bulk discounts index" do
       visit merchant_dashboard_index_path(@merchant)
       expect(page).to have_link("##{@merchant.name}'s bulk discounts")
-      save_and_open_page
-      click_on("##{@merchant.name}'s bulk discounts")
-      # expect(current_path).to eq("/merchants/#{@katz.id}/bulk_discounts")
+
+      click_on("#{@merchant.name}'s bulk discounts")
 
       expect(current_path).to eq(merchant_bulk_discounts_path(@merchant))
       # expect(page).to have_content("#{@merchant.name}'s bulk discounts")
-
-    # within("#bulk_discount-0#{@discount_1.id}") do
-    within("#bulk_discount-0") do
       visit merchant_bulk_discounts_path(@merchant)
-      expect(page).to have_content(@discount_1.percentage_discount)
-      expect(page).to have_content(@discount_1.quantity_threshold)
-    end
 
-    within("#bulk_discount-1") do
-      expect(page).to have_content(@discount_2.percentage_discount)
-      expect(page).to have_content(@discount_2.quantity_threshold)
-    end
+      within("#bulk_discount-#{@discount_1.id}") do
+        expect(page).to have_content(@discount_1.percentage_discount)
+        expect(page).to have_content(@discount_1.quantity_threshold)
+        click_on "#{@discount_1.percentage_discount}"
+        expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount_1))
+      end
 
-    within("#bulk_discount-2") do
-      expect(page).to have_content(@discount_3.percentage_discount)
-      expect(page).to have_content(@discount_3.quantity_threshold)
-    end
-
-    # click_on "#{@merchant.name}'s items"
-    # expect(current_path).to eq("/merchants/#{@merchant.id}/items")
-    # expect(page).to have_link('Discount')
-    # click_on('Discount')
-    # expect(current_path).to eq(merchant_bulk_discount_path)
+    # within("#bulk_discount-#{@discount_2.id}") do
+    #   expect(page).to have_content(@discount_2.percentage_discount)
+    #   expect(page).to have_content(@discount_2.quantity_threshold)
+    #   click_on "#{@discount_2.percentage_discount}"
+    #   expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount_2))
+    # end
+    #
+    # within("#bulk_discount-#{@discount_3.id}") do
+    #   expect(page).to have_content(@discount_3.percentage_discount)
+    #   expect(page).to have_content(@discount_3.quantity_threshold)
+    #   click_on "#{@discount_3.percentage_discount}"
+    #   expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount_3))
+    # end
   end
 end
