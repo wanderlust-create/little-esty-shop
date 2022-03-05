@@ -6,16 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Customer.destroy_all
-Merchant.destroy_all
-Invoice.destroy_all
-Transaction.destroy_all
-Item.destroy_all
-InvoiceItem.destroy_all
+# BulkDiscount.destroy_all
+# Customer.destroy_all
+# Merchant.destroy_all
+# Invoice.destroy_all
+# Transaction.destroy_all
+# Item.destroy_all
+# InvoiceItem.destroy_all
 
 
-
-
+@merchant = Merchant.create!(name: "Ana Maria")
 @merchant1 = Merchant.create!(name: "Suzy Hernandez")
 @merchant2 = Merchant.create!(name: "Juan Lopez")
 
@@ -126,3 +126,8 @@ InvoiceItem.destroy_all
 @transaction8 = Transaction.create!(result: 0, invoice_id: @invoice14.id)
 @transaction8 = Transaction.create!(result: 0, invoice_id: @invoice15.id)
 @transaction8 = Transaction.create!(result: 0, invoice_id: @invoice16.id)
+
+
+@discount_1 = BulkDiscount.create!(percentage_discount: 0.5, quantity_threshold: 15, merchant_id: @merchant.id)
+@discount_2 = BulkDiscount.create!(percentage_discount: 0.10, quantity_threshold: 30, merchant_id: @merchant.id)
+@discount_3 = BulkDiscount.create!(percentage_discount: 0.20, quantity_threshold: 40, merchant_id: @merchant.id)
