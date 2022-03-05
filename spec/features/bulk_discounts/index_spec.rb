@@ -15,7 +15,6 @@ RSpec.describe 'Bulk discounts index page' do
     @merchant = Merchant.create!(name: "Ana Maria")
     @discount_1 = BulkDiscount.create!(percentage_discount: 0.5, quantity_threshold: 15, merchant_id: @merchant.id)
     @discount_2 = BulkDiscount.create!(percentage_discount: 0.10, quantity_threshold: 30, merchant_id: @merchant.id)
-    @discount_3 = BulkDiscount.create!(percentage_discount: 0.20, quantity_threshold: 40, merchant_id: @merchant.id)
   end
 
   it "when visiting the merchant bulk discounts index" do
@@ -41,12 +40,6 @@ RSpec.describe 'Bulk discounts index page' do
     #   click_on "#{@discount_2.percentage_discount}"
     #   expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount_2))
     # end
-    #
-    # within("#bulk_discount-#{@discount_3.id}") do
-    #   expect(page).to have_content(@discount_3.percentage_discount)
-    #   expect(page).to have_content(@discount_3.quantity_threshold)
-    #   click_on "#{@discount_3.percentage_discount}"
-    #   expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount_3))
-    # end
+
   end
 end
