@@ -42,4 +42,30 @@ RSpec.describe 'Bulk discounts index page' do
     # end
 
   end
+
+  #   As a merchant
+  # When I visit the discounts index page
+  # I see a section with a header of "Upcoming Holidays"
+  # In this section the name and date of the next 3 upcoming US holidays are listed.
+  #
+  # Use the Next Public Holidays Endpoint in the [Nager.Date API](https://date.nager.at/swagger/index.html
+
+  it "displays next 3 upcoming holidays" do
+     merchant = Merchant.create!(name: 'Ana Maria')
+
+     holiday_1 = Holiday.new({name: "Good Friday", date: "2022-04-15"})
+     holiday_2 = Holiday.new({name: "Memorial Day", date: "2022-05-30"})
+     holiday_3 = Holiday.new({name: "Juneteenth", date: "2022-06-20"})
+
+     visit merchant_bulk_discounts_path(@merchant.id)
+
+     expect(page).to have_content("Upcoming Holidays")
+
+     expect(page).to have_content(holiday_1.name)
+     expect(page).to have_content(holiday_1.date)
+     expect(page).to have_content(holiday_2.name)
+     expect(page).to have_content(holiday_2.date)
+     expect(page).to have_content(holiday_3.name)
+     expect(page).to have_content(holiday_3.date)
+   end
 end
