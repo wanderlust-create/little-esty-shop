@@ -6,7 +6,8 @@
       resources :invoices, only: [:index, :show, :update]
       resources :dashboard, only: [:index]
       resources :items, only: [:index, :show, :edit, :update, :new, :create]
-      resources :bulk_discounts, only: [:index, :show, :new, :create, :destroy, :update]
+      # resources :bulk_discounts, only: [:index, :show, :new, :create, :destroy, :update, :edit]
+      resources :bulk_discounts
     end
 
     namespace :admin, only: [:index, :show, :edit, :update, :new, :create], module: :admin do
