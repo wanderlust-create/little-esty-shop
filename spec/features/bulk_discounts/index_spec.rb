@@ -34,13 +34,14 @@ RSpec.describe 'Bulk discounts index page' do
         expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount_1))
       end
 
-    # within("#bulk_discount-#{@discount_2.id}") do
-    #   expect(page).to have_content(@discount_2.percentage_discount)
-    #   expect(page).to have_content(@discount_2.quantity_threshold)
-    #   click_on "#{@discount_2.percentage_discount}"
-    #   expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount_2))
-    # end
+      visit merchant_bulk_discounts_path(@merchant)
 
+      within("#bulk_discount-#{@discount_2.id}") do
+        expect(page).to have_content(@discount_2.percentage_discount)
+        expect(page).to have_content(@discount_2.quantity_threshold)
+        click_on "#{@discount_2.percentage_discount}"
+        expect(current_path).to eq(merchant_bulk_discount_path(@merchant, @discount_2))
+      end
   end
 
   #   As a merchant
